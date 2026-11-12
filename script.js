@@ -22,7 +22,14 @@
 
   /* Filter chips */
   var chips = document.querySelectorAll(".chip");
-  var items = document.querySelectorAll(".item");
+  /* No ranking: the order is shuffled on every visit, so nothing reads as first or most important */
+  var list = document.getElementById("items");
+  var order = Array.prototype.slice.call(list.children);
+  for (var n = order.length - 1; n > 0; n--) {
+    var k = Math.floor(Math.random() * (n + 1)), tmp = order[n]; order[n] = order[k]; order[k] = tmp;
+  }
+  order.forEach(function (el) { list.appendChild(el); });
+  var items = list.querySelectorAll(".item");
   var count = document.getElementById("count");
   function apply(filter) {
     var shown = 0;
