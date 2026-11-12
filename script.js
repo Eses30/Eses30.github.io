@@ -20,24 +20,27 @@
     try { localStorage.setItem("theme", next); } catch (e) {}
   });
 
-  /* Filter chips */
+  /* Filter chips. Items can belong to several areas (data-cat is a space-separated list). */
   var chips = document.querySelectorAll(".chip");
-  /* No ranking: the order is shuffled on every visit, so nothing reads as first or most important */
-  var list = document.getElementById("items");
-  var order = Array.prototype.slice.call(list.children);
-  for (var n = order.length - 1; n > 0; n--) {
-    var k = Math.floor(Math.random() * (n + 1)), tmp = order[n]; order[n] = order[k]; order[k] = tmp;
-  }
-  order.forEach(function (el) { list.appendChild(el); });
-  var items = list.querySelectorAll(".item");
   var count = document.getElementById("count");
+  /* No ranking: each list is shuffled on every visit, so nothing reads as first or most important */
+  document.querySelectorAll(".items").forEach(function (list) {
+    var order = Array.prototype.slice.call(list.children);
+    for (var n = order.length - 1; n > 0; n--) {
+      var k = Math.floor(Math.random() * (n + 1)), tmp = order[n]; order[n] = order[k]; order[k] = tmp;
+    }
+    order.forEach(function (el) { list.appendChild(el); });
+  });
+  var items = document.querySelectorAll(".item");
+  var groups = document.querySelectorAll(".group");
   function apply(filter) {
     var shown = 0;
     items.forEach(function (el) {
-      var show = filter === "all" || el.dataset.cat === filter;
+      var show = filter === "all" || el.dataset.cat.split(" ").indexOf(filter) !== -1;
       el.hidden = !show;
       if (show) shown++;
     });
+    groups.forEach(function (g) { g.hidden = !g.querySelector(".item:not([hidden])"); });
     chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c.dataset.filter === filter)); });
     count.textContent = shown + (shown === 1 ? " thing" : " things") + " planned" + (filter === "all" ? "" : " in this area");
   }

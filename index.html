@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shreyash S</title>
-  <meta name="description" content="Shreyash S. MEng Computer Engineering (EIE) at Imperial College London. Engineering, research, music and speaking.">
+  <meta name="description" content="Shreyash S. MEng Computer Engineering (EIE) at Imperial College London. Interested in quantitative finance, machine learning and computer architecture. Website under construction.">
   <meta name="theme-color" content="#0000cd">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +28,7 @@
 
     <div class="hero-body">
       <p class="kicker">Imperial College London</p>
+      <p class="wip"><span class="dot" aria-hidden="true"></span>Website under construction</p>
       <h1 id="name" aria-label="Shreyash S">Shreyash S</h1>
       <p class="degree">MEng Computer Engineering <em>(EIE)</em></p>
       <p class="contact"><a id="mail" class="mail" href="#"><noscript>shreyash.singh25 [at] imperial.ac.uk</noscript></a></p>
@@ -35,8 +36,8 @@
 
     <div class="ticker" aria-hidden="true">
       <div class="ticker-track">
-        <span>Silicon</span><span>Compilers</span><span>Research</span><span>Markets</span><span>Violin</span><span>Piano</span><span>Debate</span><span>Comedy</span><span>Teaching</span>
-        <span>Silicon</span><span>Compilers</span><span>Research</span><span>Markets</span><span>Violin</span><span>Piano</span><span>Debate</span><span>Comedy</span><span>Teaching</span>
+        <span>Quant</span><span>Machine learning</span><span>GPUs</span><span>Compilers</span><span>Markets</span><span>Silicon</span><span>Systems</span><span>Music</span><span>Debate</span>
+        <span>Quant</span><span>Machine learning</span><span>GPUs</span><span>Compilers</span><span>Markets</span><span>Silicon</span><span>Systems</span><span>Music</span><span>Debate</span>
       </div>
     </div>
   </header>
@@ -45,33 +46,46 @@
     <section class="coming" aria-labelledby="coming-h">
       <div class="coming-head">
         <h2 id="coming-h">Things <em>to come</em></h2>
-        <p class="status"><span class="dot" aria-hidden="true"></span>Under construction. Here is what is being built.</p>
+        <p class="status"><span class="dot" aria-hidden="true"></span>This website is under construction, and so is everything listed here. Pages and projects will appear as they are finished.</p>
       </div>
 
       <div class="filters" role="group" aria-label="Filter by area">
         <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" class="chip" data-filter="engineering" aria-pressed="false">Engineering</button>
-        <button type="button" class="chip" data-filter="research" aria-pressed="false">Research</button>
-        <button type="button" class="chip" data-filter="finance" aria-pressed="false">Finance</button>
-        <button type="button" class="chip" data-filter="music" aria-pressed="false">Music</button>
-        <button type="button" class="chip" data-filter="speaking" aria-pressed="false">Speaking and teaching</button>
+        <button type="button" class="chip" data-filter="quant" aria-pressed="false">Quant and finance</button>
+        <button type="button" class="chip" data-filter="ai" aria-pressed="false">AI and machine learning</button>
+        <button type="button" class="chip" data-filter="hardware" aria-pressed="false">Hardware and systems</button>
+        <button type="button" class="chip" data-filter="software" aria-pressed="false">Software and algorithms</button>
+        <button type="button" class="chip" data-filter="beyond" aria-pressed="false">Beyond engineering</button>
       </div>
 
-      <ul class="items" id="items">
-        <li class="item" data-cat="research"><h3>AI research</h3><p>Summaries and critical notes on papers in machine learning and reasoning.</p></li>
-        <li class="item" data-cat="research"><h3>Research projects</h3><p>Questions explored in depth, with methods, results and what I would test next.</p></li>
-        <li class="item" data-cat="engineering"><h3>CPU and GPU design</h3><p>Processor and accelerator architecture, from instruction set to working hardware.</p></li>
-        <li class="item" data-cat="engineering"><h3>Compiler design</h3><p>How source code becomes machine code: parsing, analysis and code generation.</p></li>
-        <li class="item" data-cat="engineering"><h3>Hardware projects</h3><p>Circuits, FPGA and embedded builds, documented from design to test.</p></li>
-        <li class="item" data-cat="engineering"><h3>Software projects</h3><p>Systems, tools and applications, with the code and the reasoning behind it.</p></li>
-        <li class="item" data-cat="finance"><h3>Financial analysis</h3><p>Markets, risk and quantitative strategy, explained from first principles.</p></li>
-        <li class="item" data-cat="music"><h3>Compositions</h3><p>Original pieces, with the sheet music available to read and play.</p></li>
-        <li class="item" data-cat="music"><h3>Repertoire</h3><p>The violin and piano pieces I play.</p></li>
-        <li class="item" data-cat="speaking"><h3>Tutoring</h3><p>Teaching maths, engineering and computing by building ideas up from the basics.</p></li>
-        <li class="item" data-cat="speaking"><h3>Public speaking</h3><p>Talks and presentations.</p></li>
-        <li class="item" data-cat="speaking"><h3>Debate</h3><p>Arguments, rounds and what they teach about reasoning under pressure.</p></li>
-        <li class="item" data-cat="speaking"><h3>Stand-up comedy</h3><p>Material and sets.</p></li>
-      </ul>
+      <div class="group">
+        <ul class="items">
+          <li class="item" data-cat="quant"><h3>Quantitative finance</h3><p>Pricing, risk and strategy research, with the mathematics derived and the backtests shown.</p></li>
+          <li class="item" data-cat="quant software"><h3>Trading systems</h3><p>Low-latency market-data and execution infrastructure, built in C++.</p></li>
+          <li class="item" data-cat="quant ai"><h3>Probability and statistics</h3><p>The mathematics behind markets and machine learning, worked from first principles.</p></li>
+          <li class="item" data-cat="ai"><h3>AI research</h3><p>Summaries and critical notes on papers in machine learning and reasoning.</p></li>
+          <li class="item" data-cat="ai"><h3>Machine learning projects</h3><p>Reproductions and experiments, with results and the ablations that explain them.</p></li>
+          <li class="item" data-cat="ai hardware"><h3>GPU programming</h3><p>Parallel kernels and performance engineering on GPUs.</p></li>
+          <li class="item" data-cat="hardware"><h3>CPU and GPU design</h3><p>Processor and accelerator architecture, from instruction set to working hardware.</p></li>
+          <li class="item" data-cat="hardware software"><h3>Compiler design</h3><p>From source code to machine code, including how compilers target accelerators.</p></li>
+          <li class="item" data-cat="hardware"><h3>Hardware projects</h3><p>Circuits, FPGA and embedded builds, documented from design to test.</p></li>
+          <li class="item" data-cat="software"><h3>Software projects</h3><p>Systems, tools and applications, with the code and the reasoning behind it.</p></li>
+          <li class="item" data-cat="software quant"><h3>Algorithms and data structures</h3><p>Implementations with complexity analysis and tests.</p></li>
+          <li class="item" data-cat="ai"><h3>Research projects</h3><p>Questions explored in depth, with methods, results and what I would test next.</p></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h3 class="sub">Beyond engineering</h3>
+        <ul class="items">
+          <li class="item" data-cat="beyond"><h3>Compositions</h3><p>Original pieces, with the sheet music available to read and play.</p></li>
+          <li class="item" data-cat="beyond"><h3>Repertoire</h3><p>The violin and piano pieces I play.</p></li>
+          <li class="item" data-cat="beyond"><h3>Tutoring</h3><p>Teaching maths, engineering and computing by building ideas up from the basics.</p></li>
+          <li class="item" data-cat="beyond"><h3>Public speaking</h3><p>Talks and presentations.</p></li>
+          <li class="item" data-cat="beyond"><h3>Debate</h3><p>Arguments, rounds and what they teach about reasoning under pressure.</p></li>
+          <li class="item" data-cat="beyond"><h3>Stand-up comedy</h3><p>Material and sets.</p></li>
+        </ul>
+      </div>
       <p class="count" id="count" aria-live="polite"></p>
     </section>
   </main>
