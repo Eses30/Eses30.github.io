@@ -20,133 +20,40 @@
     try { localStorage.setItem("theme", next); } catch (e) {}
   });
 
-  /* ---------- Connected topics: a network with no ranking ---------- */
-  var cloud = document.getElementById("cloud");
-  var svg = document.getElementById("links");
-  var detail = document.getElementById("detail");
+  /* ---------- Topic index ---------- */
   var chips = document.querySelectorAll(".chip");
-  var hint = detail.innerHTML;
-  var SVGNS = "http://www.w3.org/2000/svg";
-  var byId = {}, nodes = [], edges = [], filter = "all", pinned = null, built = false;
-
-  document.querySelectorAll("#nodes .item").forEach(function (el) {
-    var title = el.querySelector("h3").textContent, desc = el.querySelector("p").textContent;
-    var btn = document.createElement("button");
-    btn.type = "button"; btn.className = "node"; btn.textContent = title;
-    el.textContent = ""; el.appendChild(btn);
-    var n = { id: el.id, el: el, title: title, desc: desc, cats: el.dataset.cat.split(" "), links: el.dataset.links.split(" "), x: 0, y: 0, vx: 0, vy: 0, w: 0, h: 0 };
-    byId[n.id] = n; nodes.push(n);
-    btn.addEventListener("mouseenter", function () { if (!pinned) focusNode(n); });
-    btn.addEventListener("mouseleave", function () { if (!pinned) clearFocus(); });
-    btn.addEventListener("focus", function () { if (!pinned) focusNode(n); });
-    btn.addEventListener("blur", function () { if (!pinned) clearFocus(); });
-    btn.addEventListener("click", function () {
-      if (pinned === n) { pinned = null; clearFocus(); } else { pinned = n; focusNode(n); }
+  var rows = document.querySelectorAll(".item");
+  var divider = document.querySelector(".divider");
+  function apply(filter) {
+    var beyondShown = 0;
+    rows.forEach(function (el) {
+      var cats = el.dataset.cat.split(" ");
+      var show = filter === "all" || cats.indexOf(filter) !== -1;
+      el.hidden = !show;
+      if (show && cats.indexOf("beyond") !== -1) beyondShown++;
     });
-  });
-  var seen = {};
-  nodes.forEach(function (a) {
-    a.links.forEach(function (id) {
-      var b = byId[id]; if (!b) return;
-      var key = [a.id, b.id].sort().join("|");
-      if (!seen[key]) { seen[key] = 1; edges.push({ a: a, b: b }); }
-    });
-  });
-  function neighbours(n) { return edges.filter(function (e) { return e.a === n || e.b === n; }).map(function (e) { return e.a === n ? e.b : e.a; }); }
-
-  function focusNode(n) {
-    var near = neighbours(n);
-    nodes.forEach(function (m) {
-      m.el.classList.toggle("is-on", m === n);
-      m.el.classList.toggle("is-near", near.indexOf(m) !== -1);
-      m.el.classList.toggle("is-dim", m !== n && near.indexOf(m) === -1);
-    });
-    edges.forEach(function (e) {
-      var on = e.a === n || e.b === n;
-      e.line.classList.toggle("is-on", on); e.line.classList.toggle("is-dim", !on);
-    });
-    detail.textContent = "";
-    var h = document.createElement("h3"); h.textContent = n.title;
-    var p = document.createElement("p"); p.textContent = n.desc;
-    var r = document.createElement("p"); r.className = "rel";
-    r.appendChild(document.createTextNode("Connects to: "));
-    near.forEach(function (m, i) {
-      var b = document.createElement("b"); b.textContent = m.title; r.appendChild(b);
-      if (i < near.length - 1) r.appendChild(document.createTextNode(", "));
-    });
-    detail.appendChild(h); detail.appendChild(p); detail.appendChild(r);
-  }
-  function clearFocus() {
-    nodes.forEach(function (m) { m.el.classList.remove("is-on", "is-near", "is-dim"); });
-    edges.forEach(function (e) { e.line.classList.remove("is-on", "is-dim"); });
-    detail.innerHTML = hint;
-  }
-  function applyFilter() {
-    nodes.forEach(function (m) { m.el.classList.toggle("is-off", filter !== "all" && m.cats.indexOf(filter) === -1); });
+    if (divider) divider.hidden = beyondShown === 0 || filter === "beyond";
     chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c.dataset.filter === filter)); });
   }
-  chips.forEach(function (c) { c.addEventListener("click", function () { filter = c.dataset.filter; applyFilter(); }); });
-  addEventListener("keydown", function (e) { if (e.key === "Escape" && pinned) { pinned = null; clearFocus(); } });
+  chips.forEach(function (c) { c.addEventListener("click", function () { apply(c.dataset.filter); }); });
+  apply("all");
 
-  /* Layout: a small force simulation (repulsion, springs on links, gentle gravity), then box-overlap clean-up.
-     Starts from random positions every visit, so there is no fixed first or centre. */
-  function layout() {
-    var W = cloud.clientWidth, H = cloud.clientHeight;
-    nodes.forEach(function (n) { n.w = n.el.offsetWidth; n.h = n.el.offsetHeight; n.x = W * (0.15 + 0.7 * Math.random()); n.y = H * (0.15 + 0.7 * Math.random()); n.vx = n.vy = 0; });
-    var rest = Math.min(W, H * 1.6) * 0.17, i, j, a, b, dx, dy, d, f;
-    for (var it = 0; it < 420; it++) {
-      for (i = 0; i < nodes.length; i++) for (j = i + 1; j < nodes.length; j++) {
-        a = nodes[i]; b = nodes[j]; dx = b.x - a.x; dy = b.y - a.y; d = Math.max(Math.hypot(dx, dy), 12);
-        f = 5200 / (d * d); a.vx -= f * dx / d; a.vy -= f * dy / d; b.vx += f * dx / d; b.vy += f * dy / d;
-      }
-      edges.forEach(function (e) {
-        var ddx = e.b.x - e.a.x, ddy = e.b.y - e.a.y, dd = Math.max(Math.hypot(ddx, ddy), 1), ff = 0.02 * (dd - rest);
-        e.a.vx += ff * ddx / dd; e.a.vy += ff * ddy / dd; e.b.vx -= ff * ddx / dd; e.b.vy -= ff * ddy / dd;
-      });
-      nodes.forEach(function (n) {
-        n.vx += (W / 2 - n.x) * 0.004; n.vy += (H / 2 - n.y) * 0.004;
-        n.vx *= 0.82; n.vy *= 0.82; n.x += n.vx; n.y += n.vy;
-        n.x = Math.max(n.w / 2 + 6, Math.min(W - n.w / 2 - 6, n.x));
-        n.y = Math.max(n.h / 2 + 6, Math.min(H - n.h / 2 - 6, n.y));
-      });
-    }
-    /* Stretch the settled layout to fill the whole area so links are easy to read */
-    var x0 = 1e9, x1 = -1e9, y0 = 1e9, y1 = -1e9;
-    nodes.forEach(function (n) { x0 = Math.min(x0, n.x); x1 = Math.max(x1, n.x); y0 = Math.min(y0, n.y); y1 = Math.max(y1, n.y); });
-    var sx = (W - 190) / Math.max(x1 - x0, 1), sy = (H - 70) / Math.max(y1 - y0, 1);
-    nodes.forEach(function (n) { n.x = 95 + (n.x - x0) * sx; n.y = 35 + (n.y - y0) * sy; });
-    for (var p = 0; p < 80; p++) for (i = 0; i < nodes.length; i++) for (j = i + 1; j < nodes.length; j++) {
-      a = nodes[i]; b = nodes[j];
-      var ox = (a.w + b.w) / 2 + 14 - Math.abs(a.x - b.x), oy = (a.h + b.h) / 2 + 10 - Math.abs(a.y - b.y);
-      if (ox > 0 && oy > 0) {
-        if (ox < oy) { var sx = (a.x < b.x ? -1 : 1) * ox / 2; a.x += sx; b.x -= sx; }
-        else { var sy = (a.y < b.y ? -1 : 1) * oy / 2; a.y += sy; b.y -= sy; }
-      }
-    }
-    nodes.forEach(function (n) {
-      n.x = Math.max(n.w / 2 + 6, Math.min(W - n.w / 2 - 6, n.x)); n.y = Math.max(n.h / 2 + 6, Math.min(H - n.h / 2 - 6, n.y));
-      n.el.style.left = n.x + "px"; n.el.style.top = n.y + "px";
-    });
-    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
-    edges.forEach(function (e) {
-      if (!e.line) { e.line = document.createElementNS(SVGNS, "line"); e.line.setAttribute("class", "link"); svg.appendChild(e.line); }
-      e.line.setAttribute("x1", e.a.x); e.line.setAttribute("y1", e.a.y); e.line.setAttribute("x2", e.b.x); e.line.setAttribute("y2", e.b.y);
-    });
-    built = true;
-  }
-  var narrow = matchMedia("(max-width: 43.75rem)"), lastW = 0;
-  function setup() {
-    cloud.classList.add("on");
-    if (narrow.matches) { nodes.forEach(function (n) { n.el.style.left = n.el.style.top = ""; });
-      edges.forEach(function (e) { if (!e.line) { e.line = document.createElementNS(SVGNS, "line"); e.line.setAttribute("class", "link"); svg.appendChild(e.line); } });
-      return; }
-    layout(); lastW = cloud.clientWidth;
-  }
-  setup();
-  applyFilter();
-  var rt; addEventListener("resize", function () {
-    clearTimeout(rt); rt = setTimeout(function () { if (!narrow.matches && Math.abs(cloud.clientWidth - lastW) > 40) { pinned = null; clearFocus(); setup(); } else if (narrow.matches) setup(); }, 180);
+  /* Soft spotlight that follows the pointer inside a row */
+  rows.forEach(function (el) {
+    el.addEventListener("pointermove", function (e) {
+      var r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", (e.clientX - r.left) + "px");
+      el.style.setProperty("--my", (e.clientY - r.top) + "px");
+    }, { passive: true });
   });
+
+  /* Rows fade in as they scroll into view */
+  if ("IntersectionObserver" in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    rows.forEach(function (el) { el.classList.add("reveal"); io.observe(el); });
+  }
 
   /* ---------- Name: each letter reshapes with the pointer (variable font axes) ---------- */
   var h1 = document.getElementById("name");

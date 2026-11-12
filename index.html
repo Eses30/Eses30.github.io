@@ -52,33 +52,27 @@
         <button type="button" class="chip" data-filter="beyond" aria-pressed="false">Beyond engineering</button>
       </div>
 
-      <div class="cloud" id="cloud">
-        <svg class="links" id="links" aria-hidden="true"></svg>
-        <ul class="nodes" id="nodes">
-          <li class="item" id="quantfin" data-cat="quant" data-links="prob trading algos resprojects"><h3>Quantitative finance</h3><p>Pricing, risk and strategy research, with the mathematics derived and the backtests shown.</p></li>
-          <li class="item" id="trading" data-cat="quant software" data-links="quantfin swprojects cpugpu"><h3>Trading systems</h3><p>Low-latency market-data and execution infrastructure, built in C++.</p></li>
-          <li class="item" id="prob" data-cat="quant ai" data-links="quantfin airesearch mlprojects tutoring compositions"><h3>Probability and statistics</h3><p>The mathematics behind markets and machine learning, worked from first principles.</p></li>
-          <li class="item" id="airesearch" data-cat="ai" data-links="prob mlprojects resprojects debate"><h3>AI research</h3><p>Summaries and critical notes on papers in machine learning and reasoning.</p></li>
-          <li class="item" id="mlprojects" data-cat="ai" data-links="prob airesearch gpuprog resprojects"><h3>Machine learning projects</h3><p>Reproductions and experiments, with results and the ablations that explain them.</p></li>
-          <li class="item" id="gpuprog" data-cat="ai hardware" data-links="mlprojects cpugpu compiler"><h3>GPU programming</h3><p>Parallel kernels and performance engineering on GPUs.</p></li>
-          <li class="item" id="cpugpu" data-cat="hardware" data-links="gpuprog compiler hwprojects trading"><h3>CPU and GPU design</h3><p>Processor and accelerator architecture, from instruction set to working hardware.</p></li>
-          <li class="item" id="compiler" data-cat="hardware software" data-links="gpuprog cpugpu swprojects algos"><h3>Compiler design</h3><p>From source code to machine code, including how compilers target accelerators.</p></li>
-          <li class="item" id="hwprojects" data-cat="hardware" data-links="cpugpu swprojects"><h3>Hardware projects</h3><p>Circuits, FPGA and embedded builds, documented from design to test.</p></li>
-          <li class="item" id="swprojects" data-cat="software" data-links="compiler algos trading hwprojects"><h3>Software projects</h3><p>Systems, tools and applications, with the code and the reasoning behind it.</p></li>
-          <li class="item" id="algos" data-cat="software quant" data-links="quantfin swprojects compiler"><h3>Algorithms and data structures</h3><p>Implementations with complexity analysis and tests.</p></li>
-          <li class="item" id="resprojects" data-cat="ai" data-links="airesearch mlprojects quantfin"><h3>Research projects</h3><p>Questions explored in depth, with methods, results and what I would test next.</p></li>
-          <li class="item" id="compositions" data-cat="beyond" data-links="repertoire prob"><h3>Compositions</h3><p>Original pieces, with the sheet music available to read and play.</p></li>
-          <li class="item" id="repertoire" data-cat="beyond" data-links="compositions"><h3>Repertoire</h3><p>The violin and piano pieces I play.</p></li>
-          <li class="item" id="tutoring" data-cat="beyond" data-links="prob speaking"><h3>Tutoring</h3><p>Teaching maths, engineering and computing by building ideas up from the basics.</p></li>
-          <li class="item" id="speaking" data-cat="beyond" data-links="tutoring debate comedy"><h3>Public speaking</h3><p>Talks and presentations.</p></li>
-          <li class="item" id="debate" data-cat="beyond" data-links="speaking airesearch"><h3>Debate</h3><p>Arguments, rounds and what they teach about reasoning under pressure.</p></li>
-          <li class="item" id="comedy" data-cat="beyond" data-links="speaking"><h3>Stand-up comedy</h3><p>Material and sets.</p></li>
+      <ul class="items" id="items">
+          <li class="item" data-cat="quant software"><div class="body"><h3>Trading systems</h3><p>Low-latency market-data and execution infrastructure, built in C++.</p></div><span class="tags">Quant · Systems</span></li>
+          <li class="item" data-cat="quant"><div class="body"><h3>Quantitative finance</h3><p>Pricing, risk and strategy research, with the mathematics derived and the backtests shown.</p></div><span class="tags">Quant</span></li>
+          <li class="item" data-cat="ai"><div class="body"><h3>Machine learning projects</h3><p>Reproductions and experiments, with results and the ablations that explain them.</p></div><span class="tags">AI · ML</span></li>
+          <li class="item" data-cat="ai hardware"><div class="body"><h3>GPU programming</h3><p>Parallel kernels and performance engineering on GPUs.</p></div><span class="tags">AI · Hardware</span></li>
+          <li class="item" data-cat="quant ai"><div class="body"><h3>Probability and statistics</h3><p>The mathematics behind markets and machine learning, worked from first principles.</p></div><span class="tags">Quant · Maths</span></li>
+          <li class="item" data-cat="ai"><div class="body"><h3>AI research</h3><p>Summaries and critical notes on papers in machine learning and reasoning.</p></div><span class="tags">AI · Research</span></li>
+          <li class="item" data-cat="hardware"><div class="body"><h3>CPU and GPU design</h3><p>Processor and accelerator architecture, from instruction set to working hardware.</p></div><span class="tags">Hardware</span></li>
+          <li class="item" data-cat="hardware software"><div class="body"><h3>Compiler design</h3><p>From source code to machine code, including how compilers target accelerators.</p></div><span class="tags">Hardware · Software</span></li>
+          <li class="item" data-cat="software"><div class="body"><h3>Software projects</h3><p>Systems, tools and applications, with the code and the reasoning behind it.</p></div><span class="tags">Software</span></li>
+          <li class="item" data-cat="software quant"><div class="body"><h3>Algorithms and data structures</h3><p>Implementations with complexity analysis and tests.</p></div><span class="tags">Software · Quant</span></li>
+          <li class="item" data-cat="ai"><div class="body"><h3>Research projects</h3><p>Questions explored in depth, with methods, results and what I would test next.</p></div><span class="tags">Research · AI</span></li>
+          <li class="item" data-cat="hardware"><div class="body"><h3>Hardware projects</h3><p>Circuits, FPGA and embedded builds, documented from design to test.</p></div><span class="tags">Hardware</span></li>
+          <li class="divider" aria-hidden="true">Beyond engineering</li>
+          <li class="item" data-cat="beyond"><div class="body"><h3>Tutoring</h3><p>Teaching maths, engineering and computing by building ideas up from the basics.</p></div><span class="tags">Teaching</span></li>
+          <li class="item" data-cat="beyond"><div class="body"><h3>Public speaking</h3><p>Talks and presentations.</p></div><span class="tags">Speaking</span></li>
+          <li class="item" data-cat="beyond"><div class="body"><h3>Debate</h3><p>Arguments, rounds and what they teach about reasoning under pressure.</p></div><span class="tags">Speaking</span></li>
+          <li class="item" data-cat="beyond"><div class="body"><h3>Repertoire</h3><p>The violin and piano pieces I play.</p></div><span class="tags">Music</span></li>
+          <li class="item" data-cat="beyond"><div class="body"><h3>Compositions</h3><p>Original pieces, with the sheet music available to read and play.</p></div><span class="tags">Music</span></li>
+          <li class="item" data-cat="beyond"><div class="body"><h3>Stand-up comedy</h3><p>Material and sets.</p></div><span class="tags">Speaking</span></li>
         </ul>
-      </div>
-
-      <div class="detail" id="detail" aria-live="polite">
-        <p class="detail-hint">Everything here is connected to something else. Hover or tap a topic to see what it is and what it links to.</p>
-      </div>
     </section>
   </main>
 
