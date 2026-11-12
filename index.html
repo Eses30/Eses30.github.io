@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shreyash Singh</title>
   <meta name="description" content="Shreyash Singh. MEng Computer Engineering (EIE) at Imperial College London. Engineering, research, music and speaking.">
-  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#003e74">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&display=swap">
   <link rel="stylesheet" href="style.css">
   <script>
     /* Apply a saved theme before first paint to avoid a flash */
@@ -14,25 +16,35 @@
   </script>
 </head>
 <body>
-  <header class="bar">
-    <span class="mark">SS</span>
-    <button id="theme" class="icon-btn" type="button" aria-label="Switch colour theme">
-      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
-    </button>
+  <header class="hero" id="top">
+    <canvas id="waves" aria-hidden="true"></canvas>
+
+    <div class="bar">
+      <span class="mark">S<i>S</i></span>
+      <button id="theme" class="icon-btn" type="button" aria-label="Switch colour theme">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+      </button>
+    </div>
+
+    <div class="hero-body">
+      <p class="kicker">Imperial College London</p>
+      <h1 id="name" aria-label="Shreyash Singh">Shreyash Singh</h1>
+      <p class="degree">MEng Computer Engineering <em>(EIE)</em></p>
+      <p class="contact"><a id="mail" class="mail" href="#"><noscript>shreyash.singh25 [at] imperial.ac.uk</noscript></a></p>
+    </div>
+
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Silicon</span><span>Compilers</span><span>Research</span><span>Markets</span><span>Violin</span><span>Piano</span><span>Debate</span><span>Comedy</span><span>Teaching</span>
+        <span>Silicon</span><span>Compilers</span><span>Research</span><span>Markets</span><span>Violin</span><span>Piano</span><span>Debate</span><span>Comedy</span><span>Teaching</span>
+      </div>
+    </div>
   </header>
 
   <main>
-    <section class="hero">
-      <h1>Shreyash Singh</h1>
-      <p class="degree">MEng Computer Engineering (EIE)<br>Imperial College London</p>
-      <p class="contact">
-        <a id="mail" class="link" href="#"><noscript>shreyash.singh25 [at] imperial.ac.uk</noscript></a>
-      </p>
-    </section>
-
     <section class="coming" aria-labelledby="coming-h">
       <div class="coming-head">
-        <h2 id="coming-h">Things to come</h2>
+        <h2 id="coming-h">Things <em>to come</em></h2>
         <p class="status"><span class="dot" aria-hidden="true"></span>Under construction. Here is what is being built.</p>
       </div>
 
@@ -45,66 +57,28 @@
         <button type="button" class="chip" data-filter="speaking" aria-pressed="false">Speaking and teaching</button>
       </div>
 
-      <ul class="items" id="items">
-        <li class="item" data-cat="research">
-          <h3>AI research</h3>
-          <p>Summaries and critical notes on papers in machine learning and reasoning.</p>
-        </li>
-        <li class="item" data-cat="research">
-          <h3>Research projects</h3>
-          <p>Questions explored in depth, with methods, results and what I would test next.</p>
-        </li>
-        <li class="item" data-cat="engineering">
-          <h3>CPU and GPU design</h3>
-          <p>Processor and accelerator architecture, from instruction set to working hardware.</p>
-        </li>
-        <li class="item" data-cat="engineering">
-          <h3>Compiler design</h3>
-          <p>How source code becomes machine code: parsing, analysis and code generation.</p>
-        </li>
-        <li class="item" data-cat="engineering">
-          <h3>Hardware projects</h3>
-          <p>Circuits, FPGA and embedded builds, documented from design to test.</p>
-        </li>
-        <li class="item" data-cat="engineering">
-          <h3>Software projects</h3>
-          <p>Systems, tools and applications, with the code and the reasoning behind it.</p>
-        </li>
-        <li class="item" data-cat="finance">
-          <h3>Financial analysis</h3>
-          <p>Markets, risk and quantitative strategy, explained from first principles.</p>
-        </li>
-        <li class="item" data-cat="music">
-          <h3>Compositions</h3>
-          <p>Original pieces, with the sheet music available to read and play.</p>
-        </li>
-        <li class="item" data-cat="music">
-          <h3>Repertoire</h3>
-          <p>The violin and piano pieces I play.</p>
-        </li>
-        <li class="item" data-cat="speaking">
-          <h3>Tutoring</h3>
-          <p>Teaching maths, engineering and computing by building ideas up from the basics.</p>
-        </li>
-        <li class="item" data-cat="speaking">
-          <h3>Public speaking</h3>
-          <p>Talks and presentations.</p>
-        </li>
-        <li class="item" data-cat="speaking">
-          <h3>Debate</h3>
-          <p>Arguments, rounds and what they teach about reasoning under pressure.</p>
-        </li>
-        <li class="item" data-cat="speaking">
-          <h3>Stand-up comedy</h3>
-          <p>Material and sets.</p>
-        </li>
-      </ul>
+      <ol class="items" id="items">
+        <li class="item" data-cat="research"><h3>AI research</h3><p>Summaries and critical notes on papers in machine learning and reasoning.</p></li>
+        <li class="item" data-cat="research"><h3>Research projects</h3><p>Questions explored in depth, with methods, results and what I would test next.</p></li>
+        <li class="item" data-cat="engineering"><h3>CPU and GPU design</h3><p>Processor and accelerator architecture, from instruction set to working hardware.</p></li>
+        <li class="item" data-cat="engineering"><h3>Compiler design</h3><p>How source code becomes machine code: parsing, analysis and code generation.</p></li>
+        <li class="item" data-cat="engineering"><h3>Hardware projects</h3><p>Circuits, FPGA and embedded builds, documented from design to test.</p></li>
+        <li class="item" data-cat="engineering"><h3>Software projects</h3><p>Systems, tools and applications, with the code and the reasoning behind it.</p></li>
+        <li class="item" data-cat="finance"><h3>Financial analysis</h3><p>Markets, risk and quantitative strategy, explained from first principles.</p></li>
+        <li class="item" data-cat="music"><h3>Compositions</h3><p>Original pieces, with the sheet music available to read and play.</p></li>
+        <li class="item" data-cat="music"><h3>Repertoire</h3><p>The violin and piano pieces I play.</p></li>
+        <li class="item" data-cat="speaking"><h3>Tutoring</h3><p>Teaching maths, engineering and computing by building ideas up from the basics.</p></li>
+        <li class="item" data-cat="speaking"><h3>Public speaking</h3><p>Talks and presentations.</p></li>
+        <li class="item" data-cat="speaking"><h3>Debate</h3><p>Arguments, rounds and what they teach about reasoning under pressure.</p></li>
+        <li class="item" data-cat="speaking"><h3>Stand-up comedy</h3><p>Material and sets.</p></li>
+      </ol>
       <p class="count" id="count" aria-live="polite"></p>
     </section>
   </main>
 
   <footer class="foot">
     <span>&copy; <span id="year">2026</span> Shreyash Singh</span>
+    <a href="#top" class="totop">Back to top</a>
   </footer>
 
   <script src="script.js"></script>
