@@ -20,7 +20,7 @@
     <canvas id="waves" aria-hidden="true"></canvas>
 
     <div class="bar">
-      <span class="mark">S<i>S</i></span>
+      <span class="mark">SS</span>
       <button id="theme" class="icon-btn" type="button" aria-label="Switch colour theme">
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
       </button>
@@ -43,37 +43,12 @@
         <p class="status"><span class="dot" aria-hidden="true"></span>All of this will be added to the website soon.</p>
       </div>
 
-      <div class="filters" role="group" aria-label="Highlight an area">
-        <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" class="chip" data-filter="quant" aria-pressed="false">Quant and finance</button>
-        <button type="button" class="chip" data-filter="ai" aria-pressed="false">AI and machine learning</button>
-        <button type="button" class="chip" data-filter="hardware" aria-pressed="false">Hardware and systems</button>
-        <button type="button" class="chip" data-filter="software" aria-pressed="false">Software and algorithms</button>
-        <button type="button" class="chip" data-filter="beyond" aria-pressed="false">Beyond engineering</button>
-      </div>
-
-      <ul class="items" id="items">
-          <li class="item" data-cat="software"><div class="body"><h3>Software projects</h3><p>Systems, tools and applications, with the code, tests and the reasoning behind them.</p></div><span class="tags">Software · Systems</span></li>
-          <li class="item" data-cat="software quant"><div class="body"><h3>Algorithms and data structures</h3><p>Implementations with complexity analysis and tests.</p></div><span class="tags">Software · Algorithms</span></li>
-<li class="item" data-cat="quant software"><div class="body"><h3>Trading systems</h3><p>Low-latency market-data and execution infrastructure, built in C++.</p></div><span class="tags">Quant · Systems</span></li>
-<li class="item" data-cat="quant"><div class="body"><h3>Quantitative finance</h3><p>Pricing, risk and strategy research, with the mathematics derived and the backtests shown.</p></div><span class="tags">Quant</span></li>
-          <li class="item" data-cat="software hardware"><div class="body"><h3>Operating systems</h3><p>Processes, scheduling, memory and file systems, explored by building them.</p></div><span class="tags">Software · Systems</span></li>
-<li class="item" data-cat="ai"><div class="body"><h3>Machine learning projects</h3><p>Reproductions and experiments, with results and the ablations that explain them.</p></div><span class="tags">AI · ML</span></li>
-<li class="item" data-cat="ai hardware"><div class="body"><h3>GPU programming</h3><p>Parallel kernels and performance engineering on GPUs.</p></div><span class="tags">AI · Hardware</span></li>
-<li class="item" data-cat="quant ai"><div class="body"><h3>Probability and statistics</h3><p>The mathematics behind markets and machine learning, worked from first principles.</p></div><span class="tags">Quant · Maths</span></li>
-<li class="item" data-cat="ai"><div class="body"><h3>AI research</h3><p>Summaries and critical notes on papers in machine learning and reasoning.</p></div><span class="tags">AI · Research</span></li>
-<li class="item" data-cat="hardware software"><div class="body"><h3>Compiler design</h3><p>From source code to machine code, including how compilers target accelerators.</p></div><span class="tags">Hardware · Software</span></li>
-<li class="item" data-cat="hardware"><div class="body"><h3>CPU and GPU design</h3><p>Processor and accelerator architecture, from instruction set to working hardware.</p></div><span class="tags">Hardware</span></li>
-<li class="item" data-cat="ai"><div class="body"><h3>Research projects</h3><p>Questions explored in depth, with methods, results and what I would test next.</p></div><span class="tags">Research · AI</span></li>
-<li class="item" data-cat="hardware"><div class="body"><h3>Hardware projects</h3><p>Circuits, FPGA and embedded builds, documented from design to test.</p></div><span class="tags">Hardware</span></li>
-          <li class="divider" aria-hidden="true">Beyond engineering</li>
-<li class="item" data-cat="beyond"><div class="body"><h3>Tutoring</h3><p>Teaching maths, engineering and computing by building ideas up from the basics.</p></div><span class="tags">Teaching</span></li>
-<li class="item" data-cat="beyond"><div class="body"><h3>Public speaking</h3><p>Talks and presentations.</p></div><span class="tags">Speaking</span></li>
-<li class="item" data-cat="beyond"><div class="body"><h3>Debate</h3><p>Arguments, rounds and what they teach about reasoning under pressure.</p></div><span class="tags">Speaking</span></li>
-<li class="item" data-cat="beyond"><div class="body"><h3>Repertoire</h3><p>The violin and piano pieces I play.</p></div><span class="tags">Music</span></li>
-<li class="item" data-cat="beyond"><div class="body"><h3>Compositions</h3><p>Original pieces, with the sheet music available to read and play.</p></div><span class="tags">Music</span></li>
-<li class="item" data-cat="beyond"><div class="body"><h3>Stand-up comedy</h3><p>Material and sets.</p></div><span class="tags">Speaking</span></li>
-        </ul>
+      <ul class="items">
+        <li class="item"><div class="body"><h3>Software and systems</h3><p>Projects, algorithms, operating systems and GPU and hardware work, with the code and the reasoning behind them.</p></div></li>
+        <li class="item"><div class="body"><h3>Quantitative finance</h3><p>Pricing, risk and strategy research, with the mathematics derived and the backtests shown.</p></div></li>
+        <li class="item"><div class="body"><h3>AI and machine learning</h3><p>Reproductions, experiments and notes on research papers, with the results and ablations.</p></div></li>
+        <li class="item"><div class="body"><h3>Beyond engineering</h3><p>Tutoring, music, public speaking and whatever else does not fit above.</p></div></li>
+      </ul>
     </section>
   </main>
 

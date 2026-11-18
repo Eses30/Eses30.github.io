@@ -20,23 +20,7 @@
     try { localStorage.setItem("theme", next); } catch (e) {}
   });
 
-  /* ---------- Topic index ---------- */
-  var chips = document.querySelectorAll(".chip");
   var rows = document.querySelectorAll(".item");
-  var divider = document.querySelector(".divider");
-  function apply(filter) {
-    var beyondShown = 0;
-    rows.forEach(function (el) {
-      var cats = el.dataset.cat.split(" ");
-      var show = filter === "all" || cats.indexOf(filter) !== -1;
-      el.hidden = !show;
-      if (show && cats.indexOf("beyond") !== -1) beyondShown++;
-    });
-    if (divider) divider.hidden = beyondShown === 0 || filter === "beyond";
-    chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c.dataset.filter === filter)); });
-  }
-  chips.forEach(function (c) { c.addEventListener("click", function () { apply(c.dataset.filter); }); });
-  apply("all");
 
   /* Soft spotlight that follows the pointer inside a row */
   rows.forEach(function (el) {
